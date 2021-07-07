@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './App.css';
+import './Modal.css';
 import twitter from './images/twitter.svg';
 import app1x from './images/app@1x.png';
 import arrow from './images/arrow.svg';
@@ -14,10 +15,119 @@ import ryan1x from './images/ryan@1x.jpg';
 import swing from './images/swing.svg';
 import td from './images/td.svg';
 import wellsfargo from './images/wellsfargo.svg';
+import { MdClose } from 'react-icons/md';
 
-function App() {
+const Modal = ({ showModal, setShowModal, setUserData }) => {
+  const modalRef = useRef();
+  const passwordRef = useRef();
+  const formRef = useRef();
+
+  const closeModal = (e) => {
+    if (modalRef.current === e.target) {
+      setShowModal(false);
+      // resetModal();
+    }
+  };
+  const keyPress = useCallback(
+    (e) => {
+      if (e.key === 'Escape' && showModal) {
+        setShowModal(false);
+        // resetModal();
+        // console.log('I pressed');
+      }
+    },
+    [setShowModal, showModal]
+  );
+  useEffect(() => {
+    document.addEventListener('keydown', keyPress);
+    return () => document.removeEventListener('keydown', keyPress);
+  }, [keyPress]);
+  const closeModalX = () => {
+    // resetModal();
+    setShowModal((prev) => !prev);
+  };
   return (
     <>
+      {showModal ? (
+        <div className='background' onClick={closeModal} ref={modalRef}>
+          <div
+            className='ModalWrapper Modal__Fullscreen '
+            showModal={showModal}
+          >
+            <MdClose
+              className='close-btn'
+              aria-label='Close modal'
+              onClick={() => closeModalX()}
+            />
+            <div className='content modal'>
+              <p className='text-xl font-body font-semibold logo'>earmark.</p>
+              <div className='coll'>
+                <div>
+                  <p className='title'>Employees</p>
+                  <hr></hr>
+                </div>
+                <div className='op'>
+                  <div>
+                    {' '}
+                    <p>Software Internships</p>
+                  </div>
+                  <p className='info'>
+                    Online, Offline, Remote Internships & more...
+                  </p>
+                </div>
+                <div className='op'>
+                  <div>
+                    {' '}
+                    <p>Design Internships</p>
+                  </div>
+                  <p className='info'>
+                    Online, Offline, Remote Internships & more...
+                  </p>
+                </div>
+              </div>
+              <div className='coll'>
+                <p className='title'>Employees</p>
+                <hr></hr>
+                <div className='op'>
+                  <div>
+                    {' '}
+                    <p>Software Internships</p>
+                  </div>
+                  <p>Online, Offline, Remote Internships & more...</p>
+                </div>
+              </div>
+              <div className='coll'>
+                <p className='title'>Employees</p>
+                <hr></hr>
+                <div className='op'>
+                  <div>
+                    {' '}
+                    <p>Software Internships</p>
+                  </div>
+                  <p>Online, Offline, Remote Internships & more...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
+    </>
+  );
+};
+function App() {
+  const [showModal, setShowModal] = useState(false);
+  const openNav = () => {
+    console.log('window', window.width);
+    if (window.innerWidth <= 770) {
+      setShowModal(true);
+    }
+  };
+
+  return (
+    <>
+      <Modal setShowModal={setShowModal} showModal={showModal} />
       <div className='font-body bg-beige text-black pt-6 sm:pt-12 overflow-x-hidden'>
         <div className='shadow-bo'>
           <div className='sm:grid sm:grid-cols-10 sm:gap-3 md:gap-6 mx-auto max-w-screen-xl px-6 md:px-12'>
@@ -25,7 +135,7 @@ function App() {
               <div className='flex justify-between items-end nav'>
                 <p className='text-xl font-body font-semibold'>earmark.</p>
                 <div className='nav-gradtheory'>
-                  <div>
+                  <div onClick={openNav}>
                     <a href='#'>GradTheory</a>
                   </div>
                   <div className='header-gradTheory'>

@@ -1,3 +1,5 @@
+.logo {
+}
 .nav {
   position: relative;
 }
@@ -55,13 +57,21 @@
   display: flex;
   flex-direction: row;
 }
+.modal {
+  margin-top: 25px;
+  margin-left: 20px;
+  flex-direction: column;
+}
+.content > .coll:nth-child(2) {
+  margin-top: 20px;
+}
 .content > .coll {
   margin-right: 0.8rem;
 }
 .content > .coll:last-child {
   margin-right: 0;
 }
-.coll > .title {
+.coll .title {
   font-size: 1rem;
   line-height: 2rem;
   font-weight: 800;
@@ -69,9 +79,13 @@
   text-transform: uppercase;
   margin: 10px 10px 1rem;
 }
-.coll > hr {
+.coll hr {
   margin-bottom: 10px;
 }
+/* .coll > div:first-child {
+  display: flex;
+  flex-direction: row;
+} */
 .op {
   cursor: pointer;
   padding: 8px 10px 10px;
@@ -87,4 +101,44 @@
   color: #637381;
   font-weight: 500;
   font-size: 0.9rem;
+}
+.background {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  z-index: 1300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.close-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  z-index: 10;
+}
+@media (max-width: 770px) {
+  .header-gradTheory {
+    display: none;
+  }
+}
+@media (max-width: 415px) {
+  .op > div > p {
+    font-size: 1rem;
+  }
+  .coll .title {
+    margin-bottom: 0px;
+  }
+  .coll {
+    margin-bottom: 20px;
+  }
+  .coll hr {
+    display: none;
+  }
 }
