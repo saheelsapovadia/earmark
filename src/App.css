@@ -63,7 +63,7 @@
   flex-direction: column;
 }
 .content > .coll:nth-child(2) {
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 .content > .coll {
   margin-right: 0.8rem;

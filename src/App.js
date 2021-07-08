@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './App.css';
+import Info from '../src/components/Info';
 import './Modal.css';
 import twitter from './images/twitter.svg';
 import app1x from './images/app@1x.png';
@@ -270,7 +271,6 @@ function App() {
               </div>
               <div className='app-filler justify-self-stretch bg-transparent'></div>
             </aside>
-
             <div className='col-start-6 col-end-11 col-end-10 self-center pt-12 sm:pb-24 md:pt-24 mb-12 sm:mb-0'>
               <p className='inline-block py-0.5  px-3 rounded-full bg-purple-500 bg-opacity-25 mb-4'>
                 <span className='text-sm text-purple-600'>
@@ -303,7 +303,9 @@ function App() {
             </div>
           </div>
         </div>
-
+        <section>
+          <Info />
+        </section>
         <section className='bg-white py-16 lg:pt-28'>
           <div className='sm:grid sm:grid-cols-10 sm:gap-12 md:gap-24 mx-auto max-w-screen-xl px-6 md:px-12'>
             <div className='col-span-6 lg:col-span-5 sm:pr-12'>
